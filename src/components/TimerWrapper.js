@@ -13,13 +13,15 @@ export class TimerWrapper extends Component {
     }
 
     startTimer = timerLeft => {
+        //console.log('dsa');
         clearInterval(this.state.timer)
         let timer = setInterval(() => {
-            let timerLeft = this.state.timerLeft-1
+            var timerLeft = this.state.timerLeft-1
             if(timerLeft == 0) clearInterval(timer)
+            this.setState({timerLeft: timerLeft})
         }, 1000)
 
-        return this.setState({
+       return this.setState({
             timerLeft: timerLeft,
             timer: timer
         })
@@ -32,9 +34,9 @@ export class TimerWrapper extends Component {
             <div className="container">
                 <h2>Timer</h2>
                 <div className="btn-group">
-                    <Button timer="5" startTimer={this.startTimer} />
-                    <Button timer="10" startTimer={this.startTimer} />
-                    <Button timer="15" startTimer={this.startTimer} />
+                    <Button time="5" startTimer={this.startTimer} />
+                    <Button time="10" startTimer={this.startTimer} />
+                    <Button time="15" startTimer={this.startTimer} />
                 </div>
                 <Timer timerLeft={this.state.timerLeft}/>
             </div>
